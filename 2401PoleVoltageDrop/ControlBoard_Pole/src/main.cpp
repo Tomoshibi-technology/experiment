@@ -25,7 +25,7 @@ void setup() {
 	PC.begin(115200);
 	PC.println("start");
 
-	POLE.begin(230400);
+	POLE.begin(1000000);
 	
 	// led0.init();
 	// led0.set_color_rgb_all(50, 0, 0);

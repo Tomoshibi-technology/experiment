@@ -100,7 +100,7 @@ void led_rainbow(float piyo);
 void setup() {
 	Serial.begin(115200);
 	// ser_ctrl.init();
-	ctrl.begin(230400);
+	ctrl.begin(1000000);
 	
 	power.init();
 	dip.init();
