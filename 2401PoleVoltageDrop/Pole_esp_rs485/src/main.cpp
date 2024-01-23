@@ -99,7 +99,8 @@ void led_rainbow(float piyo);
 
 void setup() {
 	Serial.begin(115200);
-	ser_ctrl.init();
+	// ser_ctrl.init();
+	ctrl.begin(230400);
 	
 	power.init();
 	dip.init();
@@ -170,9 +171,9 @@ void loop(){
 		for(int i=0; i<6; i++) led[i].show();
 	}
 
-	Serial.print("loop_time: ");
-	Serial.print(micros()-loop_time);
-	Serial.print("  ");
+	// Serial.print("loop_time: ");
+	// Serial.print(micros()-loop_time);
+	// Serial.print("  ");
 	loop_time = micros();
 	hoge++;
 	piyo += 0.01;
@@ -182,8 +183,11 @@ void loop(){
 	button.read(btn_val);
 	
 	//ーーーーーーーーーー表示ーーーーーーーーーー
-	printf(" data0: %#X data1: %#X\n", ser_ctrl.data[0], ser_ctrl.data[1]);
-
+	// printf(" data0: %#X data1: %#X\n", ser_ctrl.data[0], ser_ctrl.data[1]);
+	if(ctrl.available()){
+		int hoge = ctrl.read();
+		if(hoge!=250) printf(" data0: %d \n", hoge);
+	}
 	// oled.clear();
 	// oled.display_title("Pole"+ String(dip.read_ID()) +" V" + String(VERSION));
 	// oled.display_battary(power.voltage(), power.percentage());
